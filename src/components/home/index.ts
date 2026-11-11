@@ -1,0 +1,9 @@
+export { default as About } from "./About";
+export { default as EventsDeadlines } from "./EventsDeadlines";
+export { default as FAQ } from "./FAQ";
+export { default as HeroExtras } from "./HeroExtras";
+export { default as ImpactStrip } from "./ImpactStrip";
+export { default as Programs } from "./Programs";
+export { default as ScrollProgress } from "./ScrollProgress";
+export { default as StudentJourney } from "./StudentJourney";
+export { default as StudentStories } from "./StudentStories";

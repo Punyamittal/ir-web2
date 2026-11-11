@@ -1,0 +1,269 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "../../styles/tokens.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Legacy aliases — hero only (untouched cream/ink look) */
+  --color-paper: #faf8f3;
+  --color-paper-2: #f2eee4;
+  --color-ink: #141414;
+  --color-graphite: #5e5a52;
+  --color-hairline: #e3ded2;
+  --color-ink-blue: #1f3a8a;
+
+  --color-white: var(--white);
+  --color-cobalt-25: var(--cobalt-25);
+  --color-cobalt-50: var(--cobalt-50);
+  --color-cobalt-100: var(--cobalt-100);
+  --color-cobalt-200: var(--cobalt-200);
+  --color-cobalt-300: var(--cobalt-300);
+  --color-cobalt-400: var(--cobalt-400);
+  --color-cobalt-500: var(--cobalt-500);
+  --color-cobalt-600: var(--cobalt-600);
+  --color-cobalt-700: var(--cobalt-700);
+  --color-cobalt-800: var(--cobalt-800);
+  --color-cobalt-900: var(--cobalt-900);
+  --color-cobalt-950: var(--cobalt-950);
+
+  /* Semantic surface tokens */
+  --color-bg: var(--bg);
+  --color-bg-alt: var(--bg-alt);
+  --color-card: var(--card);
+  --color-card-alt: var(--card-alt);
+  --color-heading: var(--heading);
+  --color-fg: var(--text);
+  --color-fg-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-on-accent: var(--on-accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-illustration: var(--illustration);
+  --color-focus-ring: var(--focus-ring);
+
+  /* shadcn bridge → cobalt/white */
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --color-border: var(--line);
+  --color-muted: var(--bg-alt);
+  --color-muted-foreground: var(--muted);
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--on-accent);
+  --color-accent-foreground: var(--on-accent);
+  --color-ring: var(--focus-ring);
+  --color-card-foreground: var(--text);
+  --color-popover: var(--card);
+  --color-popover-foreground: var(--text);
+  --color-secondary: var(--bg-alt);
+  --color-secondary-foreground: var(--text);
+  --color-destructive: var(--cobalt-700);
+  --color-input: var(--line);
+
+  --font-sans: var(--font-inter);
+  --font-inter: var(--font-inter);
+  --font-mono: var(--font-mono);
+  --font-display: var(--font-display);
+  --font-script: var(--font-script);
+  --font-heading: var(--font-display);
+
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius: 4px;
+}
+
+@layer base {
+  * {
+    border-color: var(--line);
+  }
+
+  body {
+    background-color: var(--white);
+    color: var(--cobalt-950);
+    /* full-bleed canvases/marquees must never cause sideways scrolling */
+    overflow-x: clip;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  /* In-page anchors land below the fixed 56px header instead of under it */
+  section[id],
+  footer[id] {
+    scroll-margin-top: 4rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  ::selection {
+    background: var(--cobalt-700);
+    color: var(--white);
+  }
+
+  :where(
+    a,
+    button,
+    input,
+    textarea,
+    select,
+    summary,
+    [tabindex]:not([tabindex="-1"])
+  ):focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  /* Scrollbar — cobalt only */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--cobalt-200) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: var(--cobalt-200);
+    border-radius: 4px;
+  }
+}
+
+.ink-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.35s ease;
+}
+.ink-underline:hover,
+.ink-underline:focus-visible {
+  background-size: 100% 1px;
+}
+
+.perforation-y {
+  background-image: radial-gradient(
+    circle,
+    var(--bg) 2.5px,
+    transparent 2.6px
+  );
+  background-size: 8px 12px;
+  background-position: center;
+  background-repeat: repeat-y;
+}
+
+.ink-scribble path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: inkDraw 1.25s ease forwards;
+}
+
+@keyframes inkDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ink-scribble path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ——— First paint splash / reveal ——— */
+.page-splash {
+  transition:
+    opacity 0.62s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.62s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0.62s;
+}
+
+.page-splash--in {
+  opacity: 1;
+  filter: none;
+  visibility: visible;
+}
+
+.page-splash--out {
+  opacity: 0;
+  filter: blur(6px);
+  visibility: hidden;
+}
+
+.page-splash-dots {
+  display: inline-block;
+  width: 1.2em;
+  text-align: left;
+  animation: splashDots 1.2s steps(4, end) infinite;
+}
+
+@keyframes splashDots {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+html[data-splash="1"] main {
+  opacity: 0;
+}
+
+/* Opacity only: a transform on <main> would re-anchor the fixed navbar and chapter rail
+   (both live inside main) to main for the duration of the reveal, making them jump. */
+html[data-app-ready="1"] main {
+  animation: pageReveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pageReveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ——— Paper grain (static tile, composited once) ——— */
+.paper-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0.05 0 0 0 0 0.25 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+@media print {
+  .paper-grain {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-splash,
+  .page-splash-dots,
+  html[data-app-ready="1"] main {
+    transition: none !important;
+    animation: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+  }
+
+  html[data-splash="1"] main {
+    opacity: 1;
+  }
+}

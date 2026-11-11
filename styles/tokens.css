@@ -1,0 +1,102 @@
+/**
+ * Cobalt + white only. Change --cobalt-* to rebrand the whole site
+ * (everything outside the untouched hero).
+ */
+
+:root {
+  --white: #ffffff;
+  --cobalt-25: #f5f7fd;
+  --cobalt-50: #ebf0fb;
+  --cobalt-100: #d6e0f7;
+  --cobalt-200: #b0c3ef;
+  --cobalt-300: #839fe3;
+  --cobalt-400: #4c73d1;
+  --cobalt-500: #1f4fc2;
+  --cobalt-600: #0a39ae;
+  --cobalt-700: #002a9a;
+  --cobalt-800: #00227e;
+  --cobalt-900: #001a61;
+  --cobalt-950: #00123f;
+
+  /* Default = surface-light */
+  --bg: #ffffff;
+  --bg-alt: var(--cobalt-25);
+  --card: #ffffff;
+  --card-alt: var(--cobalt-50);
+  --heading: var(--cobalt-700);
+  --text: var(--cobalt-950);
+  --muted: color-mix(in srgb, var(--cobalt-900) 65%, transparent);
+  --line: var(--cobalt-100);
+  --line-strong: var(--cobalt-700);
+  --accent: var(--cobalt-700);
+  --accent-hover: var(--cobalt-800);
+  --on-accent: #ffffff;
+  --accent-soft: var(--cobalt-50);
+  --illustration: var(--cobalt-700);
+  --focus-ring: var(--cobalt-400);
+  --shadow-soft: rgba(0, 42, 154, 0.08);
+}
+
+.surface-light {
+  --bg: #ffffff;
+  --bg-alt: var(--cobalt-25);
+  --card: #ffffff;
+  --card-alt: var(--cobalt-50);
+  --heading: var(--cobalt-700);
+  --text: var(--cobalt-950);
+  --muted: color-mix(in srgb, var(--cobalt-900) 65%, transparent);
+  --line: var(--cobalt-100);
+  --line-strong: var(--cobalt-700);
+  --accent: var(--cobalt-700);
+  --accent-hover: var(--cobalt-800);
+  --on-accent: #ffffff;
+  --accent-soft: var(--cobalt-50);
+  --illustration: var(--cobalt-700);
+  --focus-ring: var(--cobalt-400);
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.surface-light.alt,
+.surface-light[data-alt] {
+  background-color: var(--bg-alt);
+}
+
+.surface-blue {
+  --bg: var(--cobalt-700);
+  --bg-alt: var(--cobalt-800);
+  --card: var(--cobalt-800);
+  --card-alt: var(--cobalt-600);
+  --heading: #ffffff;
+  --text: #ffffff;
+  --muted: var(--cobalt-200);
+  --line: rgba(255, 255, 255, 0.18);
+  --line-strong: #ffffff;
+  --accent: #ffffff;
+  --accent-hover: var(--cobalt-50);
+  --on-accent: var(--cobalt-700);
+  --accent-soft: rgba(255, 255, 255, 0.1);
+  --illustration: #ffffff;
+  --focus-ring: #ffffff;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* Nested white card on a blue surface (e.g. partners postcard) */
+.surface-blue .surface-card-light {
+  --bg: #ffffff;
+  --bg-alt: var(--cobalt-25);
+  --card: #ffffff;
+  --heading: var(--cobalt-700);
+  --text: var(--cobalt-950);
+  --muted: color-mix(in srgb, var(--cobalt-900) 65%, transparent);
+  --line: var(--cobalt-100);
+  --line-strong: var(--cobalt-700);
+  --accent: var(--cobalt-700);
+  --accent-hover: var(--cobalt-800);
+  --on-accent: #ffffff;
+  --accent-soft: var(--cobalt-50);
+  --illustration: var(--cobalt-700);
+  background-color: var(--card);
+  color: var(--text);
+}
