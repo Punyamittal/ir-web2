@@ -179,61 +179,6 @@
   }
 }
 
-/* ——— First paint splash / reveal ——— */
-.page-splash {
-  transition:
-    opacity 0.62s cubic-bezier(0.22, 1, 0.36, 1),
-    filter 0.62s cubic-bezier(0.22, 1, 0.36, 1),
-    visibility 0.62s;
-}
-
-.page-splash--in {
-  opacity: 1;
-  filter: none;
-  visibility: visible;
-}
-
-.page-splash--out {
-  opacity: 0;
-  filter: blur(6px);
-  visibility: hidden;
-}
-
-.page-splash-dots {
-  display: inline-block;
-  width: 1.2em;
-  text-align: left;
-  animation: splashDots 1.2s steps(4, end) infinite;
-}
-
-@keyframes splashDots {
-  0% {
-    clip-path: inset(0 100% 0 0);
-  }
-  100% {
-    clip-path: inset(0 0 0 0);
-  }
-}
-
-html[data-splash="1"] main {
-  opacity: 0;
-}
-
-/* Opacity only: a transform on <main> would re-anchor the fixed navbar and chapter rail
-   (both live inside main) to main for the duration of the reveal, making them jump. */
-html[data-app-ready="1"] main {
-  animation: pageReveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-@keyframes pageReveal {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 /* ——— Paper grain (static tile, composited once) ——— */
 .paper-grain {
   position: fixed;
@@ -248,22 +193,5 @@ html[data-app-ready="1"] main {
 @media print {
   .paper-grain {
     display: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .page-splash,
-  .page-splash-dots,
-  html[data-app-ready="1"] main {
-    transition: none !important;
-    animation: none !important;
-    filter: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-    visibility: visible !important;
-  }
-
-  html[data-splash="1"] main {
-    opacity: 1;
   }
 }

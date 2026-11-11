@@ -11,7 +11,6 @@ import HeroExtras from "@/components/home/HeroExtras";
 import MarqueeRibbon from "@/components/home/MarqueeRibbon";
 import PartnerExplorerLazy from "@/components/partners/PartnerExplorerLazy";
 import Navbar from "@/components/navbar";
-import PageLoader from "@/components/ui/PageLoader";
 import SectionSkeleton from "@/components/ui/SectionSkeleton";
 import Skiper39 from "@/components/ui/skiper39";
 import dynamic from "next/dynamic";
@@ -34,8 +33,8 @@ const StudentJourney = dynamic(
 export default function Home() {
   return (
     <>
-      {/* Outside <main> — splash CSS veils main, so the loader must not live inside it */}
-      <PageLoader />
+      {/* No splash gate: the page is prerendered, so it shows as soon as the HTML arrives
+          instead of waiting behind a loader for all the JavaScript to download and run. */}
       <main className="bg-white">
         <ScrollProgress />
 

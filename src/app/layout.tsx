@@ -50,15 +50,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <body className="relative flex min-h-full flex-col bg-white font-[family-name:var(--font-inter)] text-cobalt-950">
-        {/* Mark splash early so main stays veiled until PageLoader crossfades. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `document.documentElement.dataset.splash="1";`,
-          }}
-        />
-        <noscript>
-          <style>{`html[data-splash] main{opacity:1!important;transform:none!important}`}</style>
-        </noscript>
         {/* Subtle paper grain: a small pre-rendered tile (see .paper-grain in globals.css).
             A full-screen live feTurbulence filter with a blend mode repainted on every scroll frame. */}
         <div className="paper-grain" aria-hidden />
