@@ -275,7 +275,9 @@ export default function GlobeCanvas({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const worldDots = getLandDots(1.15);
+    // 2° spacing: about a third of the dots of the old 1.15° grid, for a calmer, lighter globe
+    // (the country close-ups use their own detailed dots)
+    const worldDots = getLandDots(2);
     let raf = 0;
     let disposed = false;
     let rot: [number, number, number] = [...rotateRef.current];
@@ -368,7 +370,8 @@ export default function GlobeCanvas({
           alpha *= m > 0.85 ? 0.35 : 0.7;
         }
 
-        const size = useDetailDots ? (fine ? 1.05 : 1.15) : m > 0.7 ? 1.3 : 1.15;
+        // world dots are fewer, so slightly larger to keep the coastlines readable
+        const size = useDetailDots ? (fine ? 1.05 : 1.15) : m > 0.7 ? 1.9 : 1.7;
         ctx.fillStyle = rgba(ink, Math.min(1, alpha));
         ctx.fillRect(p.x - size / 2, p.y - size / 2, size, size);
       }

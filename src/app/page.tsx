@@ -7,12 +7,11 @@ import {
   ScrollProgress,
   StudentStories,
 } from "@/components/home";
-import HeroExtras from "@/components/home/HeroExtras";
+import HeroAtlas from "@/components/home/HeroAtlas";
 import MarqueeRibbon from "@/components/home/MarqueeRibbon";
 import PartnerExplorerLazy from "@/components/partners/PartnerExplorerLazy";
 import Navbar from "@/components/navbar";
 import SectionSkeleton from "@/components/ui/SectionSkeleton";
-import Skiper39 from "@/components/ui/skiper39";
 import dynamic from "next/dynamic";
 
 const Programs = dynamic(() => import("@/components/home/Programs"), {
@@ -38,12 +37,14 @@ export default function Home() {
       <main className="bg-white">
         <ScrollProgress />
 
-        {/* Hero — do not recolor */}
-        {/* svh: stable on phones (100vh grows/shrinks with the address bar and makes the hero jump) */}
-        <div id="hero" className="relative h-screen w-full supports-[height:100svh]:h-svh">
+        {/* Hero — pixel atlas of our partners. svh: stable on phones (100vh grows and shrinks
+            with the address bar and makes the hero jump). */}
+        <div
+          id="hero"
+          className="relative flex h-screen w-full flex-col bg-[#0a0d11] supports-[height:100svh]:h-svh"
+        >
           <Navbar />
-          <Skiper39 />
-          <HeroExtras />
+          <HeroAtlas />
         </div>
 
         <ImpactStrip />

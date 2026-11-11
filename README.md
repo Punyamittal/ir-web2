@@ -12,7 +12,7 @@ Outside the hero, the site uses a cobalt + white system defined in [`styles/toke
 2. Semantic tokens (`--bg`, `--heading`, `--text`, `--line`, `--accent`, …) are set by `.surface-light` / `.surface-blue` and remap automatically.
 3. Save. Components use utilities like `bg-bg`, `text-heading`, `text-fg`, `border-line`, `bg-accent` via `@theme` in `src/app/globals.css` — no per-component hex edits.
 
-The hero (`#hero` / Skiper39 / Navbar / HeroExtras) is intentionally excluded and keeps its original cream/ink look, with a 120px gradient blending into the first cobalt section.
+The hero (`#hero`) is a dark pixel-atlas map of the partner universities (`src/components/home/HeroAtlas.tsx` → `src/components/ui/pixel-atlas.tsx`). Its heat colours come from the `PALETTE` constant in `HeroAtlas.tsx`, not from the cobalt tokens. The navbar keeps its cream look.
 
 ## Getting Started
 
